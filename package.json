@@ -1,0 +1,8 @@
+{
+  "name": "ikode",
+  "version": "0.0.1",
+  "description": "Script for base64 encoding a directory of images",
+  "main": "index.js",
+  "author": "Ronald Toussaint",
+  "license": "AGPL-3.0"
+}
