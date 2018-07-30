@@ -1,8 +1,15 @@
 {
   "name": "ikode",
   "version": "0.0.1",
-  "description": "Script for base64 encoding a directory of images",
-  "main": "index.js",
+  "description": "A tool for base64 encoding a directory of images",
+  "main": "src/index.js",
+  "bin": {
+	"ikode": "src/cli.js"
+  },
   "author": "Ronald Toussaint",
-  "license": "AGPL-3.0"
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "meow": "^5.0.0"
+  }
 }

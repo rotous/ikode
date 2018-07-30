@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:sprite": "ikode --out sprite.js ./icons/",
+	"build:sprite-json": "ikode --json --out sprite.json ./icons/",
+	"build": "yarn build:sprite && yarn build:sprite-json"
+  },
+  "devDependencies": {}
+}
