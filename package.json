@@ -8,7 +8,7 @@
   },
   "author": "Ronald Toussaint",
   "license": "AGPL-3.0",
-  "keywords": ["tool", "images", "sprite", "cli"],
+  "keywords": ["tool", "images", "sprite", "cli", "front-end", "development", "web", "shell", "utility"],
   "dependencies": {
     "chalk": "^2.4.1",
     "meow": "^5.0.0"
