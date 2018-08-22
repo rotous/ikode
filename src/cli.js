@@ -21,6 +21,7 @@ const output = cmd.flags['out'];
 const verbose = cmd.flags['verbose'];
 const json = cmd.flags['json'];
 const css = !json && cmd.flags['css'];
+const yes = cmd.flags['yes'];
 const name = cmd.flags['name'];
 
 // Check input directory
@@ -48,7 +49,7 @@ try {
 	}
 }
 
-if ( outFileExists ) {
+if ( outFileExists && !yes ) {
 	// Ask for permission to overwrite
 	const rl = readline.createInterface({
 		input: process.stdin,

@@ -14,6 +14,7 @@ module.exports = meow(`
 			--css		Output a CSS file instead of a JavaScript file
 			--out		Name of output file
 			--name 		Name of the object with the URLS (only when not using --json)
+			--yes		Assume yes when prompted for a Yes/No answer
 			--verbose	Give verbose output
 	`, {
 	description: false,
@@ -32,7 +33,11 @@ module.exports = meow(`
 			alias: 'c',
 		},
 		name: {
-
+			type: 'string',
+		},
+		yes: {
+			type: 'boolean',
+			alias: 'y',
 		},
 		verbose: {
 			type: 'boolean',
