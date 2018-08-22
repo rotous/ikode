@@ -11,6 +11,7 @@ module.exports = meow(`
 
 		OPTIONS
 			--json		Output a JSON file instead of a JavaScript file
+			--css		Output a CSS file instead of a JavaScript file
 			--out		Name of output file
 			--name 		Name of the object with the URLS (only when not using --json)
 			--verbose	Give verbose output
@@ -25,6 +26,10 @@ module.exports = meow(`
 		json: {
 			type: 'boolean',
 			alias: 'j',
+		},
+		css: {
+			type: 'boolean',
+			alias: 'c',
 		},
 		name: {
 

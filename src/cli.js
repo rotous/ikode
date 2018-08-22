@@ -13,10 +13,15 @@ if ( cmd.input.length !== 1 ) {
 	errExit();
 }
 
-const input = cmd.input[0];
+let input = cmd.input[0];
+if ( input[input.length-1] === '/' || input[input.length-1] === '\\' ) {
+	input = input.substring(0, input.length -1);
+}
 const output = cmd.flags['out'];
 const verbose = cmd.flags['verbose'];
 const json = cmd.flags['json'];
+const css = !json && cmd.flags['css'];
+const name = cmd.flags['name'];
 
 // Check input directory
 let stats;
@@ -50,14 +55,14 @@ if ( outFileExists ) {
 		output: process.stdout,
 		prompt: '> '
 	});
-	rl.question('Output file exists. Do you want to overwrite it? [Y/n] ', answer => {
+	rl.question(`Output file ${output} exists. Do you want to overwrite it? [Y/n] `, answer => {
 		if ( answer.toLocaleLowerCase() === 'y' || answer === '' ) {
 			rl.close();
-			createSpriteFile(input, output, {verbose, json});
+			createSpriteFile(input, output, {verbose, json, css, name});
 		} else {
 			errExit();
 		}
 	});
 } else {
-	createSpriteFile(input, output, {verbose, json});
+	createSpriteFile(input, output, {verbose, json, css, name});
 }

@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build:sprite": "ikode --out sprite.js ./icons/",
+    "build:sprite": "ikode --out sprite.js --name pngsprite ./icons/",
 	"build:sprite-json": "ikode --json --out sprite.json ./icons/",
-	"build": "yarn build:sprite && yarn build:sprite-json"
+	"build:sprite-css": "ikode --css --out sprite.css ./icons/",
+	"build": "yarn build:sprite && yarn build:sprite-json && yarn build:sprite-css"
   },
   "devDependencies": {}
 }

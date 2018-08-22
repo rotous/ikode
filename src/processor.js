@@ -1,3 +1,4 @@
+const path = require('path');
 const fs = require('fs');
 
 const {errExit} = require('./utils.js');
@@ -19,25 +20,32 @@ const toBase64URL = (src) => {
 };
 
 const createSpriteFile = (inDir, outFile, options={}) => {
+	const name = options.name || 'base64sprite';
 	const files = fs.readdirSync(inDir);
-	let tpl = "window.base64sprite = Object.assign(window.base64sprite || {}, {\n<<FILES>>\n});";
+	let tpl = "window." + name + " = Object.assign(window." + name + " || {}, {\n<<FILES>>\n});";
 	if ( options.json ) {
 		tpl = "{\n<<FILES>>\n}";
+	} else if ( options.css ) {
+		tpl = '<<FILES>>';
 	}
 	let filesString = [];
 	files.forEach(file => {
 		try {
 			if ( options.verbose ) {
-				console.log('encoding ' + inDir + file);
+				console.log('encoding ' + inDir + path.sep + file);
 			}
-			const url = toBase64URL(inDir + file);
-			filesString.push("\t\"" + file.substr(0, file.length - 4) + '": "' + url + '"');
+			const url = toBase64URL(inDir + path.sep + file);
+			if ( options.css ) {
+				filesString.push(`.${file.substr(0, file.length - 4)} {background: url(${url}) no-repeat center center;}`);
+			} else {
+				filesString.push("\t\"" + file.substr(0, file.length - 4) + '": "' + url + '"');
+			}
 		} catch (err) {
 			console.log('Error encoding ' + file + ': ' + err);
 		}
 	});
 	const urlCount = filesString.length;
-	filesString = filesString.join(",\n");
+	filesString = filesString.join(options.css ? "\n" : ",\n");
 
 	if ( options.verbose ) {
 		console.log(`Writing ${urlCount} URLs to ${outFile}`);

@@ -1,4 +1,4 @@
-window.base64sprite = Object.assign(window.base64sprite || {}, {
+window.pngsprite = Object.assign(window.pngsprite || {}, {
 	"arrow_down_l": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAYAAACXU8ZrAAAAM0lEQVR4AWMIDAy8DMT/8eDLIEUgfAWbAqg4A0wRholQPgNCEQLfASmA0gyYihD4AroYAK0QQiQoDznDAAAAAElFTkSuQmCC",
 	"arrow_down_l_white": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAYAAACXU8ZrAAAAN0lEQVR4AWP4////5f/4wWWGwMBAkMIrOBRcAcmDFIEwNhMvw+RABLLCO1AFd5DFQQS6wgvoYgAYQXUes9lw5AAAAABJRU5ErkJggg==",
 	"arrow_down_s": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAYAAABbNsX4AAAAHElEQVR4AWMKDAz8j46ZGBgYGBlQASMTjIFMAwD7JAnFXwG1BAAAAABJRU5ErkJggg==",
