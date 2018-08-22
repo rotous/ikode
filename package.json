@@ -1,6 +1,6 @@
 {
   "name": "ikode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A tool for base64 encoding a directory of images",
   "main": "src/index.js",
   "bin": {
@@ -8,6 +8,7 @@
   },
   "author": "Ronald Toussaint",
   "license": "AGPL-3.0",
+  "keywords": "tool images sprite cli",
   "dependencies": {
     "chalk": "^2.4.1",
     "meow": "^5.0.0"
