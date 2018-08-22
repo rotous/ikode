@@ -10,12 +10,12 @@ module.exports = meow(`
 		Create a JavaScript file with an object that contains a base64 encoded string for every image in the given directory.
 
 		OPTIONS
-			--json		Output a JSON file instead of a JavaScript file
-			--css		Output a CSS file instead of a JavaScript file
-			--out		Name of output file
-			--name 		Name of the object with the URLS (only when not using --json or --css)
-			--yes		Assume yes when prompted for a Yes/No answer
-			--verbose	Give verbose output
+			--json, -j      Output a JSON file instead of a JavaScript file
+			--css, -c       Output a CSS file instead of a JavaScript file
+			--out, -o       Name of output file
+			--name, -n      Name of the object with the URLS (only when not using --json or --css)
+			--yes, -y       Assume yes when prompted for a Yes/No answer
+			--verbose, -v   Give verbose output
 	`, {
 	description: false,
 	flags: {
@@ -34,6 +34,7 @@ module.exports = meow(`
 		},
 		name: {
 			type: 'string',
+			alias: 'n',
 		},
 		yes: {
 			type: 'boolean',
