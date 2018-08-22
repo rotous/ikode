@@ -1,6 +1,6 @@
 {
   "name": "ikode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tool for base64 encoding a directory of images",
   "main": "src/index.js",
   "bin": {
