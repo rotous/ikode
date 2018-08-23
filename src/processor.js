@@ -36,7 +36,7 @@ const createSpriteFile = (inDir, outFile, options={}) => {
 			}
 			const url = toBase64URL(inDir + path.sep + file);
 			if ( options.css ) {
-				filesString.push(`.${file.substr(0, file.length - 4)} {background: url(${url}) no-repeat center center;}`);
+				filesString.push(`.${file.substr(0, file.length - 4)} {background: url(${url}) no-repeat center center${options.important ? ' !important' : ''};}`);
 			} else {
 				filesString.push("\t\"" + file.substr(0, file.length - 4) + '": "' + url + '"');
 			}

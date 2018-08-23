@@ -21,6 +21,7 @@ const output = cmd.flags['out'];
 const verbose = cmd.flags['verbose'];
 const json = cmd.flags['json'];
 const css = !json && cmd.flags['css'];
+const important = css && cmd.flags['important'];
 const yes = cmd.flags['yes'];
 const name = cmd.flags['name'];
 
@@ -59,11 +60,11 @@ if ( outFileExists && !yes ) {
 	rl.question(`Output file ${output} exists. Do you want to overwrite it? [Y/n] `, answer => {
 		if ( answer.toLocaleLowerCase() === 'y' || answer === '' ) {
 			rl.close();
-			createSpriteFile(input, output, {verbose, json, css, name});
+			createSpriteFile(input, output, {verbose, json, css, important, name});
 		} else {
 			errExit();
 		}
 	});
 } else {
-	createSpriteFile(input, output, {verbose, json, css, name});
+	createSpriteFile(input, output, {verbose, json, css, important, name});
 }
