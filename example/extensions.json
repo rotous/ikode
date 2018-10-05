@@ -1,0 +1,5 @@
+{
+	".drop-yes": [".x-tree-drop-ok-append .x-dd-drop-icon"],
+	".drop-add": ".x-tree-drop-ok-append-add .x-dd-drop-icon",
+	".drop-no": ".x-dd-drag-proxy.x-dd-drop-nodrop .x-dd-drop-icon"
+}

@@ -4,6 +4,9 @@ const fs = require('fs');
 const {errExit} = require('./utils.js');
 const errors = require('./errors.js');
 
+let extensions;
+let config;
+
 const toBase64URL = (src) => {
 	if ( src.substr(src.length - 4) !== '.png' ) {
 		throw errors.ERR_NO_VALID_IMAGE;
@@ -19,7 +22,49 @@ const toBase64URL = (src) => {
 	return 'data:image/png;base64,' + file.toString('base64');
 };
 
+const parseExtensionFile = (filename) => {
+	try {
+		extensions = fs.readFileSync(filename);
+		extensions = JSON.parse(extensions);
+	} catch (err) {
+		errExit('Unable to parse CSS extension file: ', err);
+	}
+
+	return extensions;
+};
+
+const getExtension = (className) => {
+	if ( !config.file ) {
+		return '';
+	}
+
+	if ( !extensions ) {
+		parseExtensionFile(config.file);
+	}
+
+	if ( !extensions[className] ) {
+		return '';
+	}
+
+	if ( typeof extensions[className] === 'string' ) {
+		return ', ' + extensions[className];
+	}
+
+	if ( Array.isArray(extensions[className]) ) {
+		let extension = '';
+		extensions[className].forEach(ext => {
+			if ( typeof ext === 'string' ) {
+				extension += ', ' + ext;
+			}
+		});
+		return extension;
+	}
+
+	return '';
+};
+
 const createSpriteFile = (inDir, outFile, options={}) => {
+	config = options;
 	const name = options.name || 'base64sprite';
 	const files = fs.readdirSync(inDir);
 	let tpl = "window." + name + " = Object.assign(window." + name + " || {}, {\n<<FILES>>\n});";
@@ -29,16 +74,19 @@ const createSpriteFile = (inDir, outFile, options={}) => {
 		tpl = '<<FILES>>';
 	}
 	let filesString = [];
+
 	files.forEach(file => {
 		try {
 			if ( options.verbose ) {
 				console.log('encoding ' + inDir + path.sep + file);
 			}
 			const url = toBase64URL(inDir + path.sep + file);
+			const className = '.' + file.substr(0, file.length - 4);
+			const extension = options.file ? getExtension(className) : '';
 			if ( options.css ) {
-				filesString.push(`.${file.substr(0, file.length - 4)} {background: url(${url}) no-repeat center center${options.important ? ' !important' : ''};}`);
+				filesString.push(`${className + extension} {background: url(${url}) no-repeat center center${options.important ? ' !important' : ''};}`);
 			} else {
-				filesString.push("\t\"" + file.substr(0, file.length - 4) + '": "' + url + '"');
+				filesString.push("\t\"" + className + extension + '": "' + url + '"');
 			}
 		} catch (err) {
 			console.log('Error encoding ' + file + ': ' + err);
