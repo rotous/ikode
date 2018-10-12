@@ -1,5 +1,92 @@
 {
-	".drop-yes": [".x-tree-drop-ok-append .x-dd-drop-icon"],
+	".drop-yes": ".x-tree-drop-ok-append .x-dd-drop-icon",
 	".drop-add": ".x-tree-drop-ok-append-add .x-dd-drop-icon",
-	".drop-no": ".x-dd-drag-proxy.x-dd-drop-nodrop .x-dd-drop-icon"
+	".drop-no": ".x-dd-drag-proxy.x-dd-drop-nodrop .x-dd-drop-icon",
+	".icon_mail_large_white": ".x-btn.zarafa-action .icon_new_email",
+	".icon_calendar_large_white": ".x-btn.zarafa-action .icon_new_appointment",
+	".icon_contact_large_white": ".x-btn.zarafa-action .icon_new_contact",
+	".icon_task_large_white": ".x-btn.zarafa-action .icon_new_task",
+	".icon_note_large_white": ".x-btn.zarafa-action .icon_new_note",
+
+	".icon_favorites": ".icon_folder_favorites",
+	".icon_folder_task": [
+		".icon_folder_default_task",
+		".icon_folder_default_todolist",
+		".icon_folder_shared_task"
+	],
+	".icon_folder_calendar": [
+		".icon_folder_appointment",
+		".icon_folder_default_calendar",
+		".icon_folder_shared_calendar"
+	],
+	".icon_folder_contact": [
+		".icon_folder_default_contact",
+		".icon_folder_shared_contact"
+	],
+	".icon_note_yellow": [
+		".icon_folder_stickynote",
+		".icon_folder_default_note",
+		".icon_folder_shared_note"
+	],
+	".folder": [
+		".icon_folder",
+		".icon_folder_note",
+		".icon_folder_folder",
+		".icon_folder_default_publicfolders",
+		".icon_folder_default_syncissues",
+		".icon_folder_default_conflicts",
+		".icon_folder_default_localfailures",
+		".icon_folder_default_serverfailures",
+		".icon_open"
+	],
+	".folder_public": [
+		".icon_folder_shared_store",
+		".icon_folder_public_store",
+		".icon_folder_shared_undefined"
+	],
+	".trash": [
+		".icon_folder_default_wastebasket",
+		".icon_folder_delete",
+		".icon_empty_trash"
+	],
+	".icon_folder_default_journal": ".icon_folder_journal",
+	".icon_task_request": ".icon_task_assigner",
+
+	".plus": "#zarafa-mainpanel > .x-tab-panel-header .x-tab-add",
+	".icon_cross": "#zarafa-mainpanel > .x-tab-panel-header .x-tab-strip-close",
+	".icon_calendar_blue": ".icon_appt_appointment",
+	".icon_calendar_appt_recurring": [
+		".icon_appt_meeting_recurring",
+		".icon_appt_recurring"
+	],
+	".icon_calendar_appt_newtime": ".icon_appt_meeting_newtime",
+	".icon_contact_card": ".icon_contact_user",
+	".icon_distlist": ".icon_contact_distlist",
+
+	".icon_checked": [
+		".x-grid3-check-col-on",
+		".x-menu-item-checked .x-menu-item.x-menu-check-item .x-menu-item-icon",
+		".x-grid3-row-selected.x-grid3-row .x-grid3-row-checker"
+	],
+	".icon_unchecked": [
+		".x-grid3-check-col",
+		".x-menu-item.x-menu-check-item .x-menu-item-icon",
+		".x-grid3-row .x-grid3-row-checker"
+	],
+	".icon_task_assigned": ".icon_task_assignee",
+
+	".icon_unread_mail": ".zarafa-settings-category-mail",
+	".icon_oof": [
+		".zarafa-settings-category-oof",
+		".zarafa-settings-favorite-oof"
+	],
+	".icon_funnel": ".zarafa-settings-category-rules",
+	".icon_calendar": ".zarafa-settings-category-calendar",
+	".delegates_s": ".zarafa-settings-category-delegate",
+	".icon_sendas": ".zarafa-settings-category-sendas",
+	".icon_plug": ".zarafa-settings-category-plugins",
+	".icon_shortcuts": ".zarafa-settings-category-keyshortcut",
+	".icon_spanner": ".zarafa-settings-category-advanced",
+	".icon_seal": ".zarafa-settings-category-copyright",
+	".icon_signature": ".zarafa-settings-favorite-signatures"
 }
