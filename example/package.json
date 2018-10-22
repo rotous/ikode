@@ -9,7 +9,7 @@
 	"build:sprite-json": "ikode --json --out sprite.json ./icons/",
 	"build:sprite-json:no-prompt": "ikode --json --out sprite.json -y ./icons/",
 	"build:sprite-css": "ikode --css --out sprite.css --important --file extensions.json ./icons/",
-	"build:sprite-css:no-prompt": "ikode --css --out sprite.css --important --file extensions.json -y ./icons/",
+	"build:sprite-css:no-prompt": "ikode --css --out sprite.css --important --file extensions.json -y -d icons/16x16 icons/large",
 	"build": "yarn build:sprite && yarn build:sprite-json && yarn build:sprite-css",
 	"build:no-prompt": "yarn build:sprite:no-prompt && yarn build:sprite-json:no-prompt && yarn build:sprite-css:no-prompt"
   },
