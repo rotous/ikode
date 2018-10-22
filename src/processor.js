@@ -25,7 +25,7 @@ const toBase64URL = (src) => {
 const parseExtensionFile = (filename) => {
 	try {
 		extensions = fs.readFileSync(filename);
-		extensions = JSON.parse(extensions);
+		extensions = JSON.parse(extensions.toString());
 	} catch (err) {
 		errExit('Unable to parse CSS extension file: ', err);
 	}
@@ -34,12 +34,12 @@ const parseExtensionFile = (filename) => {
 };
 
 const getExtension = (className) => {
-	if ( !config.file ) {
+	if ( !config.ext ) {
 		return '';
 	}
 
 	if ( !extensions ) {
-		parseExtensionFile(config.file);
+		parseExtensionFile(config.ext);
 	}
 
 	if ( !extensions[className] ) {
@@ -85,8 +85,8 @@ const createSpriteFile = (inDir, outFile, options={}) => {
 				console.log('encoding ' + file);
 			}
 			const url = toBase64URL(file);
-			const className = '.' + path.basename(file).substr(0, file.length - 4);
-			const extension = options.file ? getExtension(className) : '';
+			const className = '.' + path.basename(file).substr(0, path.basename(file).length - 4);
+			const extension = options.ext ? getExtension(className) : '';
 			if ( options.css ) {
 				filesString.push(`${className + extension} {background: url(${url}) no-repeat center center${options.important ? ' !important' : ''};}`);
 			} else {

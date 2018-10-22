@@ -17,7 +17,7 @@ module.exports = meow(`
             --out, -o         Name of output file
             --name, -n        Name of the object with the URLS (only when not using --json or --css)
             --important, -i   Add !important to the generated CSS rules (only when using --css)
-            --file, -f        A json file with 'css extensions' (object with keys equal to the image names,
+            --ext, -e         A json file with 'css extensions' (object with keys equal to the image names,
                               and values a string or array of strings with css selectors that should also
                               have that value as background image. Only when using --css)
             --yes, -y         Assume yes when prompted for a Yes/No answer
@@ -46,9 +46,9 @@ module.exports = meow(`
             type: 'boolean',
             alias: 'i'
         },
-        file: {
+        ext: {
             type: 'string',
-            alias: 'f',
+            alias: 'e',
         },
         yes: {
             type: 'boolean',
