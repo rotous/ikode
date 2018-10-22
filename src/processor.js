@@ -66,7 +66,11 @@ const getExtension = (className) => {
 const createSpriteFile = (inDir, outFile, options={}) => {
 	config = options;
 	const name = options.name || 'base64sprite';
-	const files = fs.readdirSync(inDir);
+	let files = [];
+	inDir.forEach(d => {
+		let items = fs.readdirSync(d);
+		items.forEach(item => files.push(d + path.sep + item));
+	});
 	let tpl = "window." + name + " = Object.assign(window." + name + " || {}, {\n<<FILES>>\n});";
 	if ( options.json ) {
 		tpl = "{\n<<FILES>>\n}";
@@ -78,10 +82,10 @@ const createSpriteFile = (inDir, outFile, options={}) => {
 	files.forEach(file => {
 		try {
 			if ( options.verbose ) {
-				console.log('encoding ' + inDir + path.sep + file);
+				console.log('encoding ' + file);
 			}
-			const url = toBase64URL(inDir + path.sep + file);
-			const className = '.' + file.substr(0, file.length - 4);
+			const url = toBase64URL(file);
+			const className = '.' + path.basename(file).substr(0, file.length - 4);
 			const extension = options.file ? getExtension(className) : '';
 			if ( options.css ) {
 				filesString.push(`${className + extension} {background: url(${url}) no-repeat center center${options.important ? ' !important' : ''};}`);

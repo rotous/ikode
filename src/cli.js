@@ -25,21 +25,33 @@ const css = !json && cmd.flags['css'];
 const important = css && cmd.flags['important'];
 const yes = cmd.flags['yes'];
 const name = cmd.flags['name'];
+let dir = cmd.flags['dir'];
+if ( !dir ) {
+	dir = [input];
+} else if ( typeof dir === 'string' ) {
+	dir = [dir, input]
+} else if ( Array.isArray(dir) ) {
+	dir = dir.concat(input);
+}
+// filter duplicates
+dir = dir.filter((value, index, dir) => dir.indexOf(value) === index);
 
-// Check input directory
+// Check input directories
 let stats;
-try {
-	stats = fs.statSync(input);
-} catch (err) {
-	if ( err.code === 'ENOENT' ) {
-		errExit('Input directory does not exist');
-	}
+dir.forEach(d => {
+	try {
+		stats = fs.statSync(d);
+	} catch (err) {
+		if ( err.code === 'ENOENT' ) {
+			errExit('Input directory `' + d + '` does not exist');
+		}
 
-	errExit('Cannot read input directory: ' + err);
-}
-if ( !stats.isDirectory() ) {
-	errExit('Given input is not a directory');
-}
+		errExit('Cannot read input directory `' + d + '`: ' + err);
+	}
+	if ( !stats.isDirectory() ) {
+		errExit('Given input `' + d + '` is not a directory');
+	}
+});
 
 // Check file with css extensions
 if ( extensionfile ) {
@@ -80,5 +92,5 @@ if ( outFileExists && !yes ) {
 		}
 	});
 } else {
-	createSpriteFile(input, output, {verbose, json, css, important, name, file: extensionfile});
+	createSpriteFile(dir, output, {verbose, json, css, important, name, file: extensionfile});
 }

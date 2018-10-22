@@ -7,6 +7,8 @@ Usage: ikode [OPTIONS] [dir]
 	OPTIONS
 		--json, -j        Output a JSON file instead of a JavaScript file
 		--css, -c         Output a CSS file instead of a JavaScript file (only when not using --json)
+		--dir, -d         Extra directory to scan for images. Note: the [dir] in the command above is
+		                  still necessary. Multiple --dir flags are possible.
 		--out, -o         Name of output file
 		--name, -n        Name of the object with the URLS (only when not using --json or --css)
 		--important, -i   Add !important to the generated CSS rules (only when using --css)
