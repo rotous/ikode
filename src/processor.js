@@ -88,7 +88,8 @@ const createSpriteFile = (inDir, outFile, options={}) => {
 			const className = '.' + path.basename(file).substr(0, path.basename(file).length - 4);
 			const extension = options.ext ? getExtension(className) : '';
 			if ( options.css ) {
-				filesString.push(`${className + extension} {background: url(${url}) no-repeat center center${options.important ? ' !important' : ''};}`);
+				let imp = options.important ? ' !important' : '';
+				filesString.push(`${className + extension} {background-image: url(${url})${imp}; background-repeat: no-repeat${imp}; background-position: center center${imp};}`);
 			} else {
 				filesString.push("\t\"" + className + extension + '": "' + url + '"');
 			}
