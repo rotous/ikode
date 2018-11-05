@@ -86,7 +86,7 @@ if ( outFileExists && !yes ) {
 	rl.question(`Output file ${output} exists. Do you want to overwrite it? [Y/n] `, answer => {
 		if ( answer.toLocaleLowerCase() === 'y' || answer === '' ) {
 			rl.close();
-			createSpriteFile(input, output, {verbose, json, css, important, name, ext: extensionfile});
+			createSpriteFile(dir, output, {verbose, json, css, important, name, ext: extensionfile});
 		} else {
 			errExit();
 		}
