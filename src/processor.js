@@ -25,7 +25,9 @@ const toBase64URL = (src) => {
 		return 'data:image/png;base64,' + file.toString('base64');
 	}
 
-	return '"data:image/svg+xml;utf8,' + file.toString('utf8').replace(/"/g, '\'').replace(/[\r\n]/g, '').replace(/[\t\s]+/g, ' ') + '"';
+	// Also base64 encode svgs, because otherwise we will run into problem with IE11
+	const svg = file.toString().replace(/"/g, '\'').replace(/[\r\n]/g, '').replace(/[\t\s]+/g, ' ');
+	return 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64');
 };
 
 const parseExtensionFile = (filename) => {
