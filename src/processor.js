@@ -8,7 +8,9 @@ let extensions;
 let config;
 
 const toBase64URL = (src) => {
-	if ( src.substr(src.length - 4) !== '.png' ) {
+	// Only support png and svg for now
+	const ext = src.substr(src.length - 4).toLowerCase();
+	if ( ext !== '.png' &&  ext !== '.svg' ) {
 		throw errors.ERR_NO_VALID_IMAGE;
 	}
 
@@ -19,7 +21,11 @@ const toBase64URL = (src) => {
 		throw errors.ERR_FILE_NOT_FOUND;
 	}
 
-	return 'data:image/png;base64,' + file.toString('base64');
+	if ( ext === '.png' ) {
+		return 'data:image/png;base64,' + file.toString('base64');
+	}
+
+	return '"data:image/svg+xml;utf8,' + file.toString('utf8').replace(/"/g, '\'').replace(/[\r\n]/g, '').replace(/[\t\s]+/g, ' ') + '"';
 };
 
 const parseExtensionFile = (filename) => {
@@ -84,6 +90,7 @@ const createSpriteFile = (inDir, outFile, options={}) => {
 			if ( options.verbose ) {
 				console.log('encoding ' + file);
 			}
+			const ext = file.substr(file.lastIndexOf('.') + 1).toLowerCase();
 			const url = toBase64URL(file);
 			const className = '.' + path.basename(file).substr(0, path.basename(file).length - 4);
 			const extension = options.ext ? getExtension(className) : '';

@@ -1,5 +1,5 @@
 # Ikode
-Ikode is a tool to create a file with base64 encoded data uri's from a directory of png images.
+Ikode is a tool to create a file with base64 encoded data uri's from a directory of png and/or svg images.
 
 ```
 Usage: ikode [OPTIONS] [dir]
@@ -18,3 +18,9 @@ Usage: ikode [OPTIONS] [dir]
 		--yes, -y         Assume yes when prompted for a Yes/No answer
 		--verbose, -v     Give verbose output
 ```
+
+## Example
+See the project in the `example` directory for an example.
+
+## License
+Ikode is licensed with the [AGPL 3.0 license](https://opensource.org/licenses/AGPL-3.0)
