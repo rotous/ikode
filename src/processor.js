@@ -26,7 +26,11 @@ const toBase64URL = (src) => {
 	}
 
 	// Also base64 encode svgs, because otherwise we will run into problem with IE11
-	const svg = file.toString().replace(/"/g, '\'').replace(/[\r\n]/g, '').replace(/[\t\s]+/g, ' ');
+	const svg = file.toString()
+		.replace(/"/g, '\'')
+		.replace(/[\r\n]+/g, '')
+		.replace(/[\t\s]+/g, ' ');
+
 	return 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64');
 };
 
