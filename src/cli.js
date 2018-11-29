@@ -18,7 +18,10 @@ if ( input[input.length-1] === '/' || input[input.length-1] === '\\' ) {
 	input = input.substring(0, input.length -1);
 }
 const output = cmd.flags['out'];
-const extensionfile = cmd.flags['ext'];
+let extensionfiles = cmd.flags['ext'];
+if ( typeof extensionfiles === 'string' ) {
+	extensionfiles = [extensionfiles]
+}
 const verbose = cmd.flags['verbose'];
 const json = cmd.flags['json'];
 const css = !json && cmd.flags['css'];
@@ -54,16 +57,18 @@ dir.forEach(d => {
 });
 
 // Check file with css extensions
-if ( extensionfile ) {
-	try {
-		stats = fs.statSync(extensionfile);
-	} catch (err) {
-		if ( err.code === 'ENOENT' ) {
-			errExit('File with CSS extensions does not exist');
-		}
+if ( extensionfiles ) {
+	extensionfiles.forEach(file => {
+		try {
+			stats = fs.statSync(file);
+		} catch (err) {
+			if ( err.code === 'ENOENT' ) {
+				errExit('File with CSS extensions does not exist: ' + file);
+			}
 
-		errExit('Cannot read file with CSS extensions: ' + err);
-	}
+			errExit('Cannot read file with CSS extensions: ' + err);
+		}
+	});
 }
 
 // Check output file
@@ -86,11 +91,11 @@ if ( outFileExists && !yes ) {
 	rl.question(`Output file ${output} exists. Do you want to overwrite it? [Y/n] `, answer => {
 		if ( answer.toLocaleLowerCase() === 'y' || answer === '' ) {
 			rl.close();
-			createSpriteFile(dir, output, {verbose, json, css, important, name, ext: extensionfile});
+			createSpriteFile(dir, output, {verbose, json, css, important, name, ext: extensionfiles});
 		} else {
 			errExit();
 		}
 	});
 } else {
-	createSpriteFile(dir, output, {verbose, json, css, important, name, ext: extensionfile});
+	createSpriteFile(dir, output, {verbose, json, css, important, name, ext: extensionfiles});
 }

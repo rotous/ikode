@@ -36,8 +36,8 @@ const toBase64URL = (src) => {
 
 const parseExtensionFile = (filename) => {
 	try {
-		extensions = fs.readFileSync(filename);
-		extensions = JSON.parse(extensions.toString());
+		let extensions = fs.readFileSync(filename);
+		return JSON.parse(extensions.toString());
 	} catch (err) {
 		errExit('Unable to parse CSS extension file: ', err);
 	}
@@ -51,7 +51,10 @@ const getExtension = (className) => {
 	}
 
 	if ( !extensions ) {
-		parseExtensionFile(config.ext);
+		extensions = {};
+		config.ext.forEach(file => {
+			extensions = Object.assign(extensions, parseExtensionFile(file));
+		});
 	}
 
 	if ( !extensions[className] ) {

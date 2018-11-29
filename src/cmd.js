@@ -11,15 +11,16 @@ module.exports = meow(`
 
         OPTIONS
             --json, -j        Output a JSON file instead of a JavaScript file
-			--css, -c         Output a CSS file instead of a JavaScript file
-			--dir, -d         Extra directory to scan for images. Note: the [dir] in the command above is
-			                  still necessary. Multiple --dir flags are possible.
+            --css, -c         Output a CSS file instead of a JavaScript file
+            --dir, -d         Extra directory to scan for images. Note: the [dir] in the command above is
+                              still necessary. Multiple --dir flags are possible.
             --out, -o         Name of output file
             --name, -n        Name of the object with the URLS (only when not using --json or --css)
             --important, -i   Add !important to the generated CSS rules (only when using --css)
             --ext, -e         A json file with 'css extensions' (object with keys equal to the image names,
                               and values a string or array of strings with css selectors that should also
                               have that value as background image. Only when using --css)
+                              Multiple --ext flags are possible.
             --yes, -y         Assume yes when prompted for a Yes/No answer
             --verbose, -v     Give verbose output
     `, {
@@ -57,11 +58,11 @@ module.exports = meow(`
         verbose: {
             type: 'boolean',
             alias: 'v',
-		},
-		dir: {
-			type: 'string',
-			alias: 'd',
-		}
+        },
+        dir: {
+            type: 'string',
+            alias: 'd',
+        }
     },
     autoHelp: true,
 });
